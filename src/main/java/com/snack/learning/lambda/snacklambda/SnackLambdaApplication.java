@@ -1,6 +1,8 @@
 package com.snack.learning.lambda.snacklambda;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.IntStream;
 
 import org.springframework.boot.SpringApplication;
@@ -22,17 +24,15 @@ public class SnackLambdaApplication {
 	public static void main(String[] args) {
 	
 		OkHttpClient client = new OkHttpClient();
-
+		System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "10");
+		
 		String url = "https://9hdekv98gh.execute-api.us-east-1.amazonaws.com/test/testLambda";
-		IntStream.range(1, 8).parallel().forEach(e->sendUrlRepeatedly(client, url, 10));
+		IntStream.range(1, 20).parallel().forEach(e->sendUrl(client, url));
 
 		// String sleepUrl = "https://uzypgy0p98.execute-api.us-east-1.amazonaws.com/test/testParallelLambda";
-		// IntStream.range(1, 8).parallel().forEach(e->sendUrlRepeatedly(client, sleepUrl, 10));
+		// IntStream.range(1, 20).parallel().forEach(e->sendUrl(client, sleepUrl));
 	}
 
-	private static void sendUrlRepeatedly(OkHttpClient client, String url, int repeatTimes) {
-		IntStream.range(1, repeatTimes).forEach(e->sendUrl(client, url));
-	}
 	private static void sendUrl(OkHttpClient client, String url) {
 		Request request = new Request.Builder().url(url).build();
 
