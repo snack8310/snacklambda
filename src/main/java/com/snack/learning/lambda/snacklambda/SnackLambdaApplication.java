@@ -1,11 +1,8 @@
 package com.snack.learning.lambda.snacklambda;
 
 import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.stream.IntStream;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import okhttp3.OkHttpClient;
