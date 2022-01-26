@@ -24,10 +24,10 @@ public class SnackLambdaApplication {
 		System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "10");
 		
 		String url = "https://9hdekv98gh.execute-api.us-east-1.amazonaws.com/test/testLambda";
-		IntStream.range(1, 20).parallel().forEach(e->sendUrl(client, url));
+		IntStream.rangeClosed(1, 20).parallel().forEach(e->sendUrl(client, url));
 
 		// String sleepUrl = "https://uzypgy0p98.execute-api.us-east-1.amazonaws.com/test/testParallelLambda";
-		// IntStream.range(1, 20).parallel().forEach(e->sendUrl(client, sleepUrl));
+		// IntStream.rangeClosed(1, 20).parallel().forEach(e->sendUrl(client, sleepUrl));
 	}
 
 	private static void sendUrl(OkHttpClient client, String url) {
